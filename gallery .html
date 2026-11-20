@@ -1,0 +1,500 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberto Watch Gallery</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080808;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background: #080808;
+            border-bottom: 1px solid #b99750;
+            padding: 18px 0;
+        }
+
+        .navbar-brand {
+            color: #d5b46b !important;
+            font-family: 'Cinzel', serif;
+            font-size: 27px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            margin: 0 10px;
+            transition: .3s;
+        }
+
+        .nav-link:hover {
+            color: #d5b46b !important;
+        }
+
+        .hero {
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
+                url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1600') center/cover;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            color: #e0bd72;
+            font-size: clamp(35px, 6vw, 65px);
+            letter-spacing: 5px;
+        }
+
+        .hero p {
+            color: #eee;
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        .gold-btn {
+            background: #c5a45e;
+            color: #080808;
+            border: 1px solid #c5a45e;
+            padding: 11px 28px;
+            letter-spacing: 1px;
+            transition: .3s;
+        }
+
+        .gold-btn:hover {
+            background: transparent;
+            color: #d5b46b;
+        }
+
+        .section-title {
+            color: #d5b46b;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: #aaa;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .gallery-section {
+            padding: 75px 0;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #a98a4c;
+            color: #d5b46b;
+            padding: 9px 20px;
+            margin: 5px;
+            transition: .3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #c5a45e;
+            color: #080808;
+        }
+
+        .watch-card {
+            background: #151515;
+            border: 1px solid #292929;
+            overflow: hidden;
+            transition: .4s;
+            height: 100%;
+        }
+
+        .watch-card:hover {
+            transform: translateY(-8px);
+            border-color: #c5a45e;
+            box-shadow: 0 10px 25px rgba(197,164,94,.15);
+        }
+
+        .watch-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .watch-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .watch-info {
+            padding: 18px;
+            text-align: center;
+        }
+
+        .watch-info h5 {
+            color: #d5b46b;
+            font-family: 'Cinzel', serif;
+        }
+
+        .watch-info p {
+            color: #aaa;
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .about-section {
+            padding: 75px 0;
+            background: #111;
+        }
+
+        .about-section p {
+            color: #bbb;
+            line-height: 1.9;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border: 2px solid #c5a45e;
+        }
+
+        footer {
+            background: #050505;
+            border-top: 1px solid #a98a4c;
+            padding: 55px 0 20px;
+        }
+
+        footer h4,
+        footer h5 {
+            color: #d5b46b;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 18px;
+        }
+
+        footer p,
+        footer a {
+            color: #aaa;
+            font-size: 14px;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        footer a:hover {
+            color: #d5b46b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #292929;
+            padding-top: 18px;
+            margin-top: 35px;
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .newsletter-input {
+            background: #151515;
+            border: 1px solid #555;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-input:focus {
+            outline: 1px solid #c5a45e;
+        }
+
+        @media(max-width: 576px) {
+            .hero {
+                min-height: 380px;
+            }
+
+            .navbar-brand {
+                font-size: 21px;
+            }
+
+            .watch-card img {
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">ALBERTO</a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO BANNER -->
+<section class="hero" id="home">
+    <div>
+        <h1>TIMELESS ELEGANCE</h1>
+        <p>DISCOVER THE ART OF LUXURY WATCHES</p>
+        <a href="#gallery" class="btn gold-btn mt-3">EXPLORE COLLECTION</a>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+    <div class="container">
+
+        <h2 class="section-title">OUR COLLECTION</h2>
+        <p class="section-subtitle">Explore our exclusive watch collections</p>
+
+        <!-- FILTER BUTTONS -->
+        <div class="text-center mb-5">
+            <button class="filter-btn active" data-filter="all">All Collections</button>
+            <button class="filter-btn" data-filter="men">Men</button>
+            <button class="filter-btn" data-filter="women">Women</button>
+            <button class="filter-btn" data-filter="kids">Kids</button>
+            <button class="filter-btn" data-filter="couple">Couple</button>
+            <button class="filter-btn" data-filter="royal">Royal</button>
+        </div>
+
+        <!-- WATCH CARDS -->
+        <div class="row g-4" id="watchGallery">
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="men">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700" alt="Classic watch">
+                    <div class="watch-info">
+                        <h5>Classic Gold</h5>
+                        <p>Men Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="women">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=700" alt="Elegant watch">
+                    <div class="watch-info">
+                        <h5>Elegant Rose</h5>
+                        <p>Women Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="royal">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=700" alt="Luxury watch">
+                    <div class="watch-info">
+                        <h5>Royal Edition</h5>
+                        <p>Royal Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="kids">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=700" alt="Modern watch">
+                    <div class="watch-info">
+                        <h5>Little Star</h5>
+                        <p>Kids Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="couple">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=700" alt="Couple watch">
+                    <div class="watch-info">
+                        <h5>Forever Pair</h5>
+                        <p>Couple Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="men">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=700" alt="Premium watch">
+                    <div class="watch-info">
+                        <h5>Premium Silver</h5>
+                        <p>Men Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="women">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=700" alt="Women's watch">
+                    <div class="watch-info">
+                        <h5>Golden Beauty</h5>
+                        <p>Women Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="royal">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=700" alt="Royal watch">
+                    <div class="watch-info">
+                        <h5>Luxury Diamond</h5>
+                        <p>Royal Collection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="couple">
+                <div class="watch-card">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=700" alt="Couple watches">
+                    <div class="watch-info">
+                        <h5>Perfect Match</h5>
+                        <p>Couple Collection</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-md-6">
+                <img class="about-img"
+                    src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=900"
+                    alt="Alberto watch">
+            </div>
+
+            <div class="col-md-6">
+                <h2 class="section-title text-start">ABOUT ALBERTO</h2>
+                <p>
+                    Alberto represents timeless elegance, premium craftsmanship
+                    and exceptional style. Our collection brings together
+                    classic designs and modern luxury.
+                </p>
+                <p>
+                    Every watch tells a story. Discover a collection made for
+                    people who appreciate beauty, quality and timeless design.
+                </p>
+                <a href="#gallery" class="btn gold-btn">VIEW COLLECTION</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6">
+                <h4>ALBERTO</h4>
+                <p>
+                    Luxury is not about time. It is about the moments
+                    that make time unforgettable.
+                </p>
+            </div>
+
+            <div class="col-lg-2 col-md-6">
+                <h5>EXPLORE</h5>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#gallery">Gallery</a></p>
+                <p><a href="#about">About Us</a></p>
+            </div>
+
+            <div class="col-lg-2 col-md-6">
+                <h5>COLLECTIONS</h5>
+                <p><a href="#gallery">Men</a></p>
+                <p><a href="#gallery">Women</a></p>
+                <p><a href="#gallery">Royal</a></p>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <h5>NEWSLETTER</h5>
+                <p>Subscribe to receive our latest updates.</p>
+                <form id="newsletterForm">
+                    <input type="email" class="newsletter-input"
+                        placeholder="Enter your email" required>
+                    <button class="btn gold-btn" type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Alberto Watch Gallery. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- CUSTOM JAVASCRIPT -->
+<script>
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            const filterValue = this.getAttribute("data-filter");
+
+            galleryItems.forEach(item => {
+                const category = item.getAttribute("data-category");
+
+                if (filterValue === "all" || category === filterValue) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    });
+
+    document.getElementById("newsletterForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("Thank you for subscribing to Alberto!");
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
